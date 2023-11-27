@@ -1,0 +1,17 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.sidebar > li > a.active {
+  background-color: gold;
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 10px;
+  list-style: none;
+}
+.sidebar > li{
+  list-style: none;
+}
