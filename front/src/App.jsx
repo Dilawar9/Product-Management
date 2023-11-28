@@ -72,6 +72,7 @@ function App() {
   return (
     <div className="App">
       <Navbar cart={cart} />
+  
 
       <Routes>
         <Route
