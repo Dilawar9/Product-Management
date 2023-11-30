@@ -13,7 +13,7 @@ function CartDetails(props) {
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
-                    src={element.image}
+                    src={`http://127.0.0.1:3030/${element.image}`}
                     className="img-fluid rounded-start"
                     alt="..."
                     style={{ width: "80px" }}

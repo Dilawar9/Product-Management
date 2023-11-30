@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <>
-      <div className="hompage" style={{ backgroundColor: "gold" }}>
+      <div key={index} className="hompage" style={{ backgroundColor: "gold" }}>
         <h1>All Products</h1>
         {/* <button onClick={getPosts}>Get Posts</button> */}
         <div className="container">
@@ -16,10 +16,10 @@ function Home(props) {
             ) : null}
             {props.products.map((element, index) => {
               return (
-                <div className="col-md-3 mb-3" key={element.id}>
+                <div className="col-md-3 mb-3" key={element._id}>
                   <div className="card">
                     <img
-                      src="https://picsum.photos/200/200"
+                      src={`http://127.0.0.1:3030/${element.image}`}
                       className="card-img-top"
                       alt="..."
                     />

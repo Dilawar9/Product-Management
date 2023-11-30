@@ -7,6 +7,7 @@ function Create(props) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
+  const[image,setImage]=useState(null);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors]  = useState(false);
 
@@ -28,14 +29,18 @@ function Create(props) {
   const handleSubmit = () => {
     console.log(name, price);
 
-    // if (name !== "" && price !== 0) {
+ 
     // create product
     setLoading(true);
-    axios
-      .post("http://localhost:3030/products", {
+    axios.post("http://localhost:3030/products", {
         name: name,
         price: price,
-        category: category
+        category: category,
+        image:image
+      }, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
       })
       .then((res) => {
         console.log(res);
@@ -44,6 +49,10 @@ function Create(props) {
           setTimeout(() => {
             navigator("/dashboard");
             props.setUpdated(true);
+            setName("");
+            setPrice(0);
+            setCategory("");
+            setImage(null)
           }, 2000);
         } else if (res.data.status == false) {
             console.log(res.data.errors);
@@ -101,12 +110,25 @@ function Create(props) {
 
         <div className="mb-3">
           <label id="category" className="text-start d-block font-bold">Select Category</label>
-          <select value={category} className="form-control" onChange={(e) => { setCategory(e.target.value) }}>
+          <select id="category" value={category} className="form-control" onChange={(e) => { setCategory(e.target.value) }}>
             <option value='Shirts'>Shirts</option>
             <option value='Pents'>Pents</option>
             <option value='Mobiles'>Mobiles</option>
           </select>
           { (errors.category) ?  <div className="alert alert-danger py-1 mt-1"> {errors.category}</div> : null}
+        </div>
+
+        <div className="mb-3">
+          <label id="image" className="text-start d-block font-bold">Produt image</label>
+          <input
+            type="file"
+            id="image"
+            onChange={(e) => {
+              setPrice(e.target.files[0]);
+            }}
+            className="form-control"
+          />
+           { (errors.price) ?  <div className="alert alert-danger py-1 mt-1"> {errors.price}</div> : null}
         </div>
 
         <button
