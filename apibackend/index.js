@@ -64,6 +64,7 @@ app.get('/', (req, res) => {
 
 // get all product
 app.get("/products", async (req, res) => {
+  
     try {
         const products = await Product.find({});
         return res.status(200).json({
@@ -142,33 +143,33 @@ app.post("/products", upload.single('image'), async (req, res) => {
 
 // update product with image
 
-app.put("/product/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
+// app.put("/product/:id", async (req, res) => {
+//     const id = req.params.id;
+//     try {
 
-        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
-            runValidators: true,
-            new: true
-        });
-        return res.status(200).json({
-            status: true,
-            updatedProduct: updatedProduct,
-            message: "product succesfully updated"
-        })
-    } catch (error) {
-        if (error.name === 'ValidationError') {
-            // Mongoose validation error
-            const errors = {};
-            for (const field in error.errors) {
-                errors[field] = error.errors[field].message;
-            }
-            res.status(422).json({ errors });
-        } else {
-            // Other types of errors
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
-});
+//         const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
+//             runValidators: true,
+//             new: true
+//         });
+//         return res.status(200).json({
+//             status: true,
+//             updatedProduct: updatedProduct,
+//             message: "product succesfully updated"
+//         })
+//     } catch (error) {
+//         if (error.name === 'ValidationError') {
+//             // Mongoose validation error
+//             const errors = {};
+//             for (const field in error.errors) {
+//                 errors[field] = error.errors[field].message;
+//             }
+//             res.status(422).json({ errors });
+//         } else {
+//             // Other types of errors
+//             res.status(500).json({ error: 'Internal Server Error' });
+//         }
+//     }
+// });
 
 app.put("/products/:id", upload.single('image'), async (req, res) => {
     const id = req.params.id;
@@ -217,21 +218,21 @@ app.put("/products/:id", upload.single('image'), async (req, res) => {
 
 
 // delete by id
-app.delete("/product/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-        await Product.findByIdAndDelete(id);
-        return res.status(200).json({
-            status: true,
-            message: "product succesfully deleted"
-        })
-    } catch (error) {
-        return res.status(404).json({
-            status: false,
-            message: "something went wrong"
-        })
-    }
-});
+// app.delete("/product/:id", async (req, res) => {
+//     const id = req.params.id;
+//     try {
+//         await Product.findByIdAndDelete(id);
+//         return res.status(200).json({
+//             status: true,
+//             message: "product succesfully deleted"
+//         })
+//     } catch (error) {
+//         return res.status(404).json({
+//             status: false,
+//             message: "something went wrong"
+//         })
+//     }
+// });
 
 app.delete("/products/:id", upload.single('image'), async (req, res) => {
     const id = req.params.id;

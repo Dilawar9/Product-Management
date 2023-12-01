@@ -27,7 +27,7 @@ function Create(props) {
     });
 
   const handleSubmit = () => {
-    console.log(name, price);
+    console.log(name, price,category,image);
 
  
     // create product
@@ -49,16 +49,17 @@ function Create(props) {
           setTimeout(() => {
             navigator("/dashboard");
             props.setUpdated(true);
-            setName("");
-            setPrice(0);
-            setCategory("");
-            setImage(null)
-          }, 2000);
-        } else if (res.data.status == false) {
-            console.log(res.data.errors);
-            setErrors(res.data.errors);
-        }
-      })
+         
+          }, 2000)
+          setName("");
+          setPrice("");
+          setCategory("");
+          setImage(null);
+        // } else if (res.data.status == false) {
+        //     console.log(res.data.errors);
+        //     setErrors(res.data.errors);
+        // })
+      }})
       .catch((er) => {
         console.log(er.message);
       })
@@ -124,7 +125,7 @@ function Create(props) {
             type="file"
             id="image"
             onChange={(e) => {
-              setPrice(e.target.files[0]);
+              setImage(e.target.files[0]);
             }}
             className="form-control"
           />

@@ -41,7 +41,7 @@ function App() {
   const getProducts = () => {
     // Make a request for a user with a given ID
     axios
-      .get("http://localhost:3030/products")
+      .get("http://127.0.0.1:3030/products")
       .then((response) => {
         if (response.status == 200) {
           setProducts(response.data.products);

@@ -10,9 +10,9 @@ function Sidebar() {
         <li>
           <NavLink to="/dashboard/product/create">Create Product</NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/dashboard/product/edit">Edit Product</NavLink>
-        </li>
+        </li> */}
       </ul>
     </>
   );

@@ -41,13 +41,16 @@ function Edit() {
             setCategory(response.data.product.category)
             setImage(response.data.product.image)
           }
+          else{
+            alert("invalid data")
+          }
         });
     },[]);
 
   const handleSubmit = () => {
     console.log(name, price);
 
-    if (name !== "" && price !== 0 && category!=="" && image!==null) {
+    if (name !== "" || price !== 0 || category!=="" || image!==null) {
     //  Edit product
       setLoading(true);
       axios.put(`http://localhost:3030/products/${params.id}`, {
@@ -69,7 +72,7 @@ function Edit() {
               navegate("/dashboard")
             },2000)
             setName("");
-            setPrice("");
+            setPrice(0);
             setCategory("");
             setImage(null);
           }
@@ -140,7 +143,7 @@ function Edit() {
             id="image"
             className="form-control"
             onChange={(e) => {
-              setCategory(e.target.files[0]);
+              setImage(e.target.files[0]);
             }}
           />
         </div>
