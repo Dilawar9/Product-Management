@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <>
-      <div className="hompage" style={{ backgroundColor: "gold" }}>
+      <div  style={{ backgroundColor: "gold" }}>
         <h1>All Products</h1>
         {/* <button onClick={getPosts}>Get Posts</button> */}
         <div className="container">
@@ -20,9 +20,9 @@ function Home(props) {
               return (
                 <div className="col-md-3 mb-3" key={index}>
                   <div className="card">
-                    <img
+                    <img  
                       src={`http://127.0.0.1:3030/${element.image}`}
-                      className="card-img-top"
+                      className="card-img-top img"
                       alt="..."
                     />
                     <div className="card-body">
